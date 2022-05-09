@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    labels:
+        app: nats-server-config
+    name: nats-server-config
+stringData:
+    nats-server.conf: |
+        jetstream: {max_mem_store: 1Gb, max_file_store: 100Gb, store_dir: /nats/jetstream}
+        host: 0.0.0.0
+        port: 4222
+        operator: "/nats/creds/Operator.jwt"
+        resolver: URL(http://account-server.default.svc:9090/jwt/v1/accounts/)
+        system_account: %s
+        max_payload: 8Mb
+        websocket: {
+          host: 0.0.0.0
+          port: 9222
+          no_tls: true
+          allowed_origins: ["http://bb.test:3000", "http://console.bb.test:5990", "http://grafana.bb.test:3005"]
+        }

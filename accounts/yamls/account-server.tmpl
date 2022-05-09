@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    labels:
+        app: account-server-config
+    name: account-server-config
+stringData:
+    account-server.conf: |-
+        operatorjwtpath: "/nats/creds/Operator.jwt"
+        http {
+            host: 0.0.0.0
+            port: 9090
+        }
+        store {
+            dir: "/nats/as_store",
+            readonly: false,
+            shard: true
+        }
+        nats: {
+          servers: ["nats://nats-server.default.svc:4222"],
+          usercredentials: "/nats/creds/sys.creds"
+        }
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: account-server
+    labels:
+        app: account-server
+spec:
+    ports:
+        - name: account-server
+          nodePort: 30090
+          port: 9090
+          protocol: TCP
+          targetPort: 9090
+    selector:
+        app: account-server
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: account-server
+    labels:
+        app: account-server
+spec:
+    selector:
+        matchLabels:
+            app: account-server
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: account-server
+        spec:
+            containers:
+                - name: account-server
+                  image: %s
+                  args: ["-c", "/nats/confs/account-server.conf"]
+                  ports:
+                      - containerPort: 9090
+                        protocol: TCP
+                        name: account-server
+                  volumeMounts:
+                      - name: directory-store
+                        mountPath: /nats/as_store
+                      - name: account-server-config
+                        mountPath: /nats/confs/account-server.conf
+                        subPath: account-server.conf
+                      - name: nats-credentials
+                        mountPath: /nats/creds/sys.creds
+                        subPath: sys.creds
+                      - name: nats-credentials
+                        mountPath: /nats/creds/Operator.jwt
+                        subPath: Operator.jwt
+            volumes:
+                - secret:
+                      secretName: account-server-config
+                  name: account-server-config
+                - emptyDir: {}
+                  name: directory-store
+                - secret:
+                      secretName: nats-credentials
+                  name: nats-credentials
+
