@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bb-installer">
     <ui-builder
       :show-options-step="false"
       :on-valid="doAction"
@@ -26,3 +26,13 @@ const onCancel = () => {
   console.log("Click on clancel");
 };
 </script>
+<style lang="scss">
+.bb-installer {
+  .ac-system-body {
+    grid-template-columns: auto;
+    .ui-builders-wrapper {
+      margin: auto;
+    }
+  }
+}
+</style>
