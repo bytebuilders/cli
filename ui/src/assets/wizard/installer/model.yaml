@@ -1,38 +1,105 @@
----
-packet:
-  apiKey: ""
-  projectID: ""
-azureStorage:
-  key: ""
-  account: ""
-azure:
-  clientID: ""
-  tenantID: ""
-  subscriptionID: ""
-  clientSecret: ""
-scaleway:
-  organization: ""
-  token: ""
-googleCloud:
-  projectID: ""
-  serviceAccount: ""
-type: ""
-digitalocean:
-  token: ""
-name: ""
-vultr:
-  token: ""
-swift:
-  username: ""
-  tenantID: ""
-  password: ""
-  tenantAuthURL: ""
-  domain: ""
-  tenantDomain: ""
-  tenantName: ""
-  region: ""
-aws:
-  secretAccessKey: ""
-  accessKeyID: ""
-linode:
-  token: ""
+accounts-ui:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+billing:
+  enabled: false
+  nodeSelector: null
+  resources: {}
+cluster-ui:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+deploy-ui:
+  enabled: false
+  nodeSelector: null
+  resources: {}
+grafana:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+imagePullSecrets: null
+infra:
+  cloudServices:
+    auth:
+      serviceAccountJson: ""
+    objstore:
+      bucket: gs://appscode
+    provider: ""
+  dns:
+    auth:
+      email: ""
+      token: ""
+    provider: ""
+  storageClass:
+    name: standard
+  tls:
+    email: ""
+ingress:
+  exposeVia: LoadBalancer
+  nodeSelector: null
+  resources: {}
+kubedb-ui:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+license: ""
+marketplace-ui:
+  enabled: false
+  nodeSelector: null
+  resources: {}
+monitoring:
+  agent: ""
+  exporter:
+    resources: {}
+  serviceMonitor:
+    labels: null
+nats:
+  exposeVia: LoadBalancer
+  nodeSelector: null
+  replicas: 1
+  resources: {}
+platform-api:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+platform-ui:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+prom-proxy:
+  enabled: true
+  nodeSelector: null
+  resources: {}
+registry: ""
+registryFQDN: ""
+release:
+  name: ace
+  namespace: ace
+settings:
+  cache:
+    persistence:
+      size: 10Gi
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        memory: 512Mi
+  db:
+    persistence:
+      size: 20Gi
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        memory: 512Mi
+  platform:
+    domain: ""
+    hosted: false
+  smtp:
+    from: ""
+    host: ""
+    password: ""
+    sendAsPlainText: false
+    tlsEnabled: false
+    username: ""
