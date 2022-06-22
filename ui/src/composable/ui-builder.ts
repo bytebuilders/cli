@@ -1,19 +1,39 @@
 import { cloneDeep } from "lodash";
 import { useStore } from "../store";
 
-import ui from "../assets/wizard/installer/create-ui.yaml";
-import model from "../assets/wizard/installer/model.yaml";
-import schema from "../assets/wizard/installer/schema.yaml";
-import language from "../assets/wizard/installer/language.yaml";
-// @ts-ignore../assets/wizard/installer/language.yaml
-import functions from "../assets/wizard/installer/functions.js";
-
 export const uiBuilderJsonSetter = async () => {
+  //init vuex
   const store = useStore();
 
-  store.commit("wizard/ui$set", cloneDeep(ui));
-  store.commit("wizard/schema$set", schema);
-  store.commit("wizard/model$init", cloneDeep(model));
-  store.commit("wizard/language$set", language);
+  //declear variable
+  let ui = {};
+  let schema = {};
+  let model = {};
+  let functions = {};
+  let language = {};
+
+  //clear ui-builder store
+  store.commit("wizard/ui$set", {});
+  store.commit("wizard/schema$set", {});
+  store.commit("wizard/model$init", {});
+  store.commit("wizard/language$set", {});
+  store.commit("wizard/functions$set", {});
+
+  try {
+    //read yaml from file
+    ui = await import("../assets/wizard/installer/create-ui.yaml");
+    model = await import("../assets/wizard/installer/model.yaml");
+    schema = await import("../assets/wizard/installer/schema.yaml");
+    language = await import("../assets/wizard/installer/language.yaml");
+    functions = await import("../assets/wizard/installer/functions.js");
+  } catch (error) {
+    console.log(error);
+  }
+
+  //set value to vuex
+  store.commit("wizard/ui$set", cloneDeep(ui.default));
+  store.commit("wizard/schema$set", schema.default);
+  store.commit("wizard/model$init", cloneDeep(model.default));
+  store.commit("wizard/language$set", language.default);
   store.commit("wizard/functions$set", functions);
 };
