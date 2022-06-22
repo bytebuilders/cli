@@ -1,0 +1,234 @@
+.sidebar-appear-enter-active,
+.sidebar-appear-leave-active {
+  position: absolute;
+  width: 270px;
+  transition: all 0.2s ease;
+}
+.sidebar-appear-enter-from {
+  left: -100%;
+  opacity: 0;
+}
+.sidebar-appear-enter-to {
+  left: 0px;
+  opacity: 1;
+}
+.sidebar-appear-leave-from {
+  left: 0px;
+  opacity: 1;
+}
+.sidebar-appear-leave-to {
+  left: 100%;
+  opacity: 0;
+}
+
+.navbar-appear-enter-active,
+.navbar-appear-leave-active {
+  position: absolute;
+  height: 50px;
+  transition: all 0.2s ease;
+}
+.navbar-appear-enter-from {
+  top: -100%;
+  opacity: 0;
+}
+.navbar-appear-enter-to {
+  top: 0px;
+  opacity: 1;
+}
+.navbar-appear-leave-from {
+  top: 0px;
+  opacity: 1;
+}
+.navbar-appear-leave-to {
+  top: 100%;
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+.slide-left-enter-from {
+  transform: translateX(20px);
+  opacity: 0;
+}
+.slide-left-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.slide-left-leave-from {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.slide-left-leave-to {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+.slide-right-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+.slide-right-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.slide-right-leave-from {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.slide-right-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+.slide-down-enter-from {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.slide-down-enter-to {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.slide-down-leave-from {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.slide-down-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.overview-card-enter-active {
+  transition: all 0.2s ease-in-out;
+}
+.overview-card-leave-active {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+}
+.overview-card-enter-from {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+.overview-card-enter-to {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.overview-card-leave-from {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.overview-card-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.cluster-card-enter-active {
+  transition: all 0.2s ease-in-out;
+}
+.cluster-card-leave-active {
+  transition: all 0s;
+  position: absolute;
+}
+.cluster-card-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+.cluster-card-enter-to {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.cluster-card-leave-from {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.cluster-card-leave-to {
+  opacity: 0;
+}
+
+.dropdown-animate.dropdown-show-animation .dropdown-content {
+  animation: dropdownAnim 0.2s ease-in-out;
+}
+.dropdown-animate.dropdown-hide-animation .dropdown-content {
+  animation: dropdownAnim reverse 0.2s ease-in-out;
+}
+
+@keyframes dropdownAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.accordion-enter-active,
+.accordion-leave-active {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+.accordion-enter-from {
+  top: -10px;
+  opacity: 0;
+}
+.accordion-enter-to {
+  top: 0px;
+  opacity: 1;
+}
+.accordion-leave-from {
+  top: 0px;
+  opacity: 1;
+}
+.accordion-leave-to {
+  top: -10px;
+  opacity: 0;
+}
+
+.fa.fa-spinner.spin {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spinAnim 1s linear infinite;
+  animation: spinAnim 1s linear infinite;
+}
+@-moz-keyframes spinAnim {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spinAnim {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spinAnim {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
