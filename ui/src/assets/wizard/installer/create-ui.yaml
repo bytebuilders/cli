@@ -195,6 +195,139 @@ elements:
               $ref: schema#/properties/infra/properties/cloudServices/properties/provider
         schema:
           $ref: schema#/properties/infra/properties/cloudServices
+      - type: single-step-form
+        label:
+          text: DNS
+        show_label: true
+        elements:
+          - type: single-step-form
+            label:
+              text: Auth
+            elements:
+              - type: input
+                label:
+                  text: Email
+                schema:
+                  $ref: schema#/properties/infra/properties/dns/properties/auth/properties/email
+              - type: input
+                label:
+                  text: Token
+                schema:
+                  $ref: schema#/properties/infra/properties/dns/properties/auth/properties/token
+            schema:
+              $ref: schema#/properties/infra/properties/dns/properties/auth
+          - type: input
+            label:
+              text: Provider
+            schema:
+              $ref: schema#/properties/infra/properties/dns/properties/provider
+        schema:
+          $ref: schema#/properties/infra/properties/dns
+      - type: single-step-form
+        label:
+          text: Storage Class
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: Name
+            schema:
+              $ref: schema#/properties/infra/properties/storageClass/properties/name
+        schema:
+          $ref: schema#/properties/infra/properties/storageClass
+      - type: single-step-form
+        label:
+          text: TLS
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: Email
+            schema:
+              $ref: schema#/properties/infra/properties/tls/properties/email
+        schema:
+          $ref: schema#/properties/infra/properties/tls
     schema:
       $ref: schema#/properties/infra
+  - type: single-step-form
+    label:
+      text: Ingress
+    show_label: true
+    elements:
+      - type: select
+        label:
+          text: Expose Via
+        options:
+          - value: LoadBalancer
+            text: LoadBalancer
+          - value: HostPort
+            text: HostPort
+        schema:
+          $ref: schema#/properties/ingress/properties/exposeVia
+      - type: key-value-input-form
+        label:
+          text: Node Selector
+        isArray: true
+        keys:
+          label:
+            text: Key
+        values:
+          label:
+            text: Value
+        schema:
+          $ref: schema#/properties/ingress/properties/nodeSelector
+      - type: reusable-element
+        label:
+          text: Resources
+        show_label: true
+        moduleResolver: loadLocalComponent
+        chart:
+          name: reusable-resources
+        schema:
+          $ref: schema#/properties/ingress/properties/resources
+    schema:
+      $ref: schema#/properties/ingress
+  - type: single-step-form
+    label:
+      text: Nats
+    show_label: true
+    elements:
+      - type: select
+        label:
+          text: Expose Via
+        options:
+          - value: LoadBalancer
+            text: LoadBalancer
+          - value: HostPort
+            text: HostPort
+        schema:
+          $ref: schema#/properties/nats/properties/exposeVia
+      - type: key-value-input-form
+        label:
+          text: Node Selector
+        isArray: true
+        keys:
+          label:
+            text: Key
+        values:
+          label:
+            text: Value
+        schema:
+          $ref: schema#/properties/nats/properties/nodeSelector
+      - type: input
+        label:
+          text: replicas
+        schema:
+          $ref: schema#/properties/nats/properties/replicas
+      - type: reusable-element
+        label:
+          text: Resources
+        show_label: true
+        moduleResolver: loadLocalComponent
+        chart:
+          name: reusable-resources
+        schema:
+          $ref: schema#/properties/nats/properties/resources
+    schema:
+      $ref: schema#/properties/nats
 type: single-step-form
