@@ -52,7 +52,87 @@ elements:
         elements:
           - type: input
             label:
-              text: Size
+              text: Persistence Size
             schema:
               $ref: schema#/properties/settings/properties/cache/properties/persistence/properties/size
+          - type: reusable-element
+            label:
+              text: Resources
+            show_label: true
+            moduleResolver: loadLocalComponent
+            chart:
+              name: reusable-resources
+            schema:
+              $ref: schema#/properties/settings/properties/cache/properties/resources
+      - type: single-step-form
+        label:
+          text: Database
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: Persistence Size
+            schema:
+              $ref: schema#/properties/settings/properties/db/properties/persistence/properties/size
+          - type: reusable-element
+            label:
+              text: Resources
+            show_label: true
+            moduleResolver: loadLocalComponent
+            chart:
+              name: reusable-resources
+            schema:
+              $ref: schema#/properties/settings/properties/db/properties/resources
+      - type: single-step-form
+        label:
+          text: Platform
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: Domain
+            schema:
+              $ref: schema#/properties/settings/properties/platform/properties/domain
+          - type: switch
+            label:
+              text: Hosted
+            schema:
+              $ref: schema#/properties/settings/properties/platform/properties/hosted
+      - type: single-step-form
+        label:
+          text: SMTP
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: From
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/from
+          - type: input
+            label:
+              text: Host
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/host
+          - type: input
+            lable:
+              text: Password
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/password
+          - type: switch
+            label:
+              text: Send As Plain Text
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/sendAsPlainText
+          - type: switch
+            label:
+              text: TLS Enable
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/tlsEnabled
+          - type: input
+            label:
+              text: Username
+            schema:
+              $ref: schema#/properties/settings/properties/smtp/properties/username
+  - type: single-step-form
+
 type: single-step-form
