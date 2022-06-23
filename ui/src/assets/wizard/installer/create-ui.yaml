@@ -134,5 +134,58 @@ elements:
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/username
   - type: single-step-form
-
+    label:
+      text: Infra
+    show_label: true
+    elements:
+      - type: single-step-form
+        label:
+          text: Cloud Services
+        show_label: true
+        elements:
+          - type: single-step-form
+            label:
+              text: Auth
+            show_label: true
+            elements:
+              - type: input
+                label:
+                  text: Service Account JSON
+                schema:
+                  $ref: schema#/properties/infra/properties/cloudServices/properties/auth/properties/serviceAccountJson
+            schema:
+              $ref: schema#/properties/infra/properties/cloudServices/properties/auth
+          - type: single-step-form
+            label:
+              text: Kms
+            show_label: true
+            elements:
+              - type: input
+                label:
+                  text: Master Key URL
+                schema:
+                  $ref: schema#/properties/infra/properties/cloudServices/properties/kms/properties/masterKeyURL
+            schema:
+              $ref: schema#/properties/infra/properties/cloudServices/properties/kms
+          - type: single-step-form
+            label:
+              text: Object Store
+            show_label: true
+            elements:
+              - type: input
+                label:
+                  text: Bucket
+                schema:
+                  $ref: schema#/properties/infra/properties/cloudServices/properties/objstore/properties/bucket
+            schema:
+              $ref: schema#/properties/infra/properties/cloudServices/properties/objstore
+          - type: input
+            label:
+              text: Provider
+            schema:
+              $ref: schema#/properties/infra/properties/cloudServices/properties/provider
+        schema:
+          $ref: schema#/properties/infra/properties/cloudServices
+    schema:
+      $ref: schema#/properties/infra
 type: single-step-form
