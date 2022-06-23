@@ -48,6 +48,18 @@ elements:
     elements:
       - type: single-step-form
         label:
+          text: Platform
+        show_label: true
+        elements:
+          - type: input
+            label:
+              text: Domain
+            schema:
+              $ref: schema#/properties/settings/properties/platform/properties/domain
+        schema:
+          $ref: schema#/properties/settings/properties/platform
+      - type: single-step-form
+        label:
           text: Cache
         show_label: true
         elements:
@@ -90,26 +102,19 @@ elements:
           $ref: schema#/properties/settings/properties/db
       - type: single-step-form
         label:
-          text: Platform
+          text: SMTP
         show_label: true
         elements:
           - type: input
             label:
-              text: Domain
+              text: Username
             schema:
-              $ref: schema#/properties/settings/properties/platform/properties/domain
-          - type: switch
+              $ref: schema#/properties/settings/properties/smtp/properties/username
+          - type: input
             label:
-              text: Hosted
+              text: Password
             schema:
-              $ref: schema#/properties/settings/properties/platform/properties/hosted
-        schema:
-          $ref: schema#/properties/settings/properties/platform
-      - type: single-step-form
-        label:
-          text: SMTP
-        show_label: true
-        elements:
+              $ref: schema#/properties/settings/properties/smtp/properties/password
           - type: input
             label:
               text: From
@@ -120,11 +125,6 @@ elements:
               text: Host
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/host
-          - type: input
-            lable:
-              text: Password
-            schema:
-              $ref: schema#/properties/settings/properties/smtp/properties/password
           - type: switch
             label:
               text: Send As Plain Text
@@ -135,11 +135,6 @@ elements:
               text: TLS Enable
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/tlsEnabled
-          - type: input
-            label:
-              text: Username
-            schema:
-              $ref: schema#/properties/settings/properties/smtp/properties/username
     schema:
       $ref: schema#/properties/settings
   - type: single-step-form
@@ -152,6 +147,11 @@ elements:
           text: Cloud Services
         show_label: true
         elements:
+          - type: input
+            label:
+              text: Provider
+            schema:
+              $ref: schema#/properties/infra/properties/cloudServices/properties/provider
           - type: single-step-form
             label:
               text: Auth
@@ -188,11 +188,6 @@ elements:
                   $ref: schema#/properties/infra/properties/cloudServices/properties/objstore/properties/bucket
             schema:
               $ref: schema#/properties/infra/properties/cloudServices/properties/objstore
-          - type: input
-            label:
-              text: Provider
-            schema:
-              $ref: schema#/properties/infra/properties/cloudServices/properties/provider
         schema:
           $ref: schema#/properties/infra/properties/cloudServices
       - type: single-step-form
@@ -200,9 +195,15 @@ elements:
           text: DNS
         show_label: true
         elements:
+          - type: input
+            label:
+              text: Provider
+            schema:
+              $ref: schema#/properties/infra/properties/dns/properties/providers
           - type: single-step-form
             label:
               text: Auth
+            show_label: true
             elements:
               - type: input
                 label:
@@ -216,11 +217,6 @@ elements:
                   $ref: schema#/properties/infra/properties/dns/properties/auth/properties/token
             schema:
               $ref: schema#/properties/infra/properties/dns/properties/auth
-          - type: input
-            label:
-              text: Provider
-            schema:
-              $ref: schema#/properties/infra/properties/dns/properties/provider
         schema:
           $ref: schema#/properties/infra/properties/dns
       - type: single-step-form
