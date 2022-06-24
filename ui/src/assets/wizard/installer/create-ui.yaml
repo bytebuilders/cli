@@ -34,11 +34,13 @@ elements:
           schema:
             $ref: schema#/properties/imagePullSecrets/properties/items
           type: input
+        label:
+          text: labels.imagePullSecret
         schema:
           $ref: schema#/properties/imagePullSecrets
         type: list-input-form
     label:
-      text: labels.imagePullSecret
+      text: labels.imagePullSecretSection
     show_label: true
     type: single-step-form
   - elements:

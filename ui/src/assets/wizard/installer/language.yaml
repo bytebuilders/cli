@@ -12,6 +12,7 @@ en:
     from: From
     host: Host
     imagePullSecret: Image Pull Secret
+    imagePullSecretSection: Image Pull Secret Section
     infra: Infra
     ingress: Ingress
     key: Key
