@@ -10,8 +10,6 @@ export const store: Store<State> = createStore<State>({
 
   mutations: {},
 
-  getters: {},
-
   actions: {},
 
   //plugins: process.env.NODE_ENV !== "production" ? [createLogger()] : [],
