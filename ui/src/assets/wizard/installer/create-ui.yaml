@@ -190,7 +190,7 @@ elements:
           - label:
               text: labels.provider
             schema:
-              $ref: schema#/properties/infra/properties/dns/properties/providers
+              $ref: schema#/properties/infra/properties/dns/properties/provider
             type: input
           - elements:
               - label:
