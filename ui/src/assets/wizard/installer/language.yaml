@@ -1,43 +1,46 @@
 en:
   labels:
-    release: Release
-    registryFQDN: Registry FQDN
-    name: Name
-    namespace: Namespace
-    imagePullSecret: Image Pull Secret
-    secret: Secret
-    settings: Settings
-    platform: Platform
-    domain: Domain
+    auth: Auth
+    bucket: Bucket
     cache: Cache
-    persistenceSize: Persistence Size
-    resources: Resources
+    cloudServices: Cloud Services
     database: Database
-    smtp: SMTP
-    username: Username
-    password: Password
+    dns: DNS
+    domain: Domain
+    email: Email
+    exposeVia: Expose Via
     from: From
     host: Host
-    sendAsPlainText: Send As Plain Text
-    tlsEnable: TLS Enable
+    imagePullSecret: Image Pull Secret
     infra: Infra
-    cloudServices: Cloud Services
-    provider: Provider
-    auth: Auth
-    serviceAccountJson: Service Account JSON
+    ingress: Ingress
+    key: Key
     kms: Kms
     masterKeyUrl: Master Key URL
+    name: Name
+    namespace: Namespace
+    nats: Nats
+    nodeSelector: Node Selector
     objectStore: Object Store
-    bucket: Bucket
-    dns: DNS
-    email: Email
-    token: Token
+    password: Password
+    persistenceSize: Persistence Size
+    platform: Platform
+    provider: Provider
+    registryFQDN: Registry FQDN
+    release: Release
+    replicas: Replicas
+    resources: Resources
+    secret: Secret
+    sendAsPlainText: Send As Plain Text
+    serviceAccountJson: Service Account JSON
+    settings: Settings
+    smtp: SMTP
     storageClass: Storage Class
     tls: TLS
-    ingress: Ingress
-    exposeVia: Expose Via
-    nodeSelector: Node Selector
-    key: Key
+    tlsEnable: TLS Enable
+    token: Token
+    username: Username
     value: Value
-    nats: Nats
-    replicas: Replicas
+  options:
+    hostPort: Host Port
+    loadBalancer: Load Balancer
