@@ -1,27 +1,43 @@
----
 en:
   labels:
-    credential_name: Credential Name
-    credential_type: Credential Type
-    secret_access_key: Secret Access Key
-    access_key_id: Access Key ID
-    client_id: Client ID
-    client_secret: Client Secret
-    tennat_id: Tenant ID
-    subscription_id: Subscription ID
-    key: Key
-    account: Account
-    token: Token
-    project_id: Project ID
-    service_account: Service Account
-    click_google_oauth: Click to provide Google OAuth information
-    api_key: API Key
-    organization: Organization
+    release: Release
+    registryFQDN: Registry FQDN
+    name: Name
+    namespace: Namespace
+    imagePullSecret: Image Pull Secret
+    secret: Secret
+    settings: Settings
+    platform: Platform
+    domain: Domain
+    cache: Cache
+    persistenceSize: Persistence Size
+    resources: Resources
+    database: Database
+    smtp: SMTP
     username: Username
     password: Password
-    tanent_name: Tenant Name
-    domain: Domain
-    tenant_id: Tenant ID
-    region: Region
-    tenant_auth_url: Tenant Auth URL
-    tenant_domain: Tenant Domain
+    from: From
+    host: Host
+    sendAsPlainText: Send As Plain Text
+    tlsEnable: TLS Enable
+    infra: Infra
+    cloudServices: Cloud Services
+    provider: Provider
+    auth: Auth
+    serviceAccountJson: Service Account JSON
+    kms: Kms
+    masterKeyUrl: Master Key URL
+    objectStore: Object Store
+    bucket: Bucket
+    dns: DNS
+    email: Email
+    token: Token
+    storageClass: Storage Class
+    tls: TLS
+    ingress: Ingress
+    exposeVia: Expose Via
+    nodeSelector: Node Selector
+    key: Key
+    value: Value
+    nats: Nats
+    replicas: Replicas

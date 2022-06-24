@@ -1,16 +1,16 @@
 elements:
   - type: single-step-form
     label:
-      text: Release
+      text: labels.release
     show_label: true
     elements:
       - label:
-          text: Name
+          text: labels.name
         type: input
         schema:
           $ref: schema#/properties/release/properties/name
       - label:
-          text: Namespace
+          text: labels.namespace
         type: input
         schema:
           $ref: schema#/properties/release/properties/namespace
@@ -18,59 +18,59 @@ elements:
       $ref: schema#/properties/release
   - type: single-step-form
     label:
-      text: Registry FQDN
+      text: labels.registryFQDN
     show_label: true
     switch: true
     elements:
       - label:
-          text: Name
+          text: labels.name
         type: input
         schema:
           $ref: schema#/properties/registryFQDN
   - type: single-step-form
     label:
-      text: Image Pull Secret
+      text: labels.imagePullSecret
     show_label: true
     elements:
       - type: list-input-form
         element:
           type: input
           label:
-            text: Secret
+            text: labels.secret
           schema:
             $ref: schema#/properties/imagePullSecrets/properties/items
         schema:
           $ref: schema#/properties/imagePullSecrets
   - type: single-step-form
     label:
-      text: Settings
+      text: labels.settings
     show_label: true
     elements:
       - type: single-step-form
         label:
-          text: Platform
+          text: labels.platform
         show_label: true
         elements:
           - type: input
             label:
-              text: Domain
+              text: labels.domain
             schema:
               $ref: schema#/properties/settings/properties/platform/properties/domain
         schema:
           $ref: schema#/properties/settings/properties/platform
       - type: single-step-form
         label:
-          text: Cache
+          text: labels.cache
         show_label: true
         elements:
           - type: input
             label:
-              text: Persistence Size
+              text: labels.persistenceSize
             schema:
               $ref: schema#/properties/settings/properties/cache/properties/persistence/properties/size
           - type: reusable-element
             label:
-              text: Resources
+              text: labels.resources
             show_label: true
             moduleResolver: loadLocalComponent
             chart:
@@ -81,17 +81,17 @@ elements:
           $ref: schema#/properties/settings/properties/cache
       - type: single-step-form
         label:
-          text: Database
+          text: labels.database
         show_label: true
         elements:
           - type: input
             label:
-              text: Persistence Size
+              text: labels.persistenceSize
             schema:
               $ref: schema#/properties/settings/properties/db/properties/persistence/properties/size
           - type: reusable-element
             label:
-              text: Resources
+              text: labels.resources
             show_label: true
             moduleResolver: loadLocalComponent
             chart:
@@ -102,88 +102,88 @@ elements:
           $ref: schema#/properties/settings/properties/db
       - type: single-step-form
         label:
-          text: SMTP
+          text: labels.smtp
         show_label: true
         elements:
           - type: input
             label:
-              text: Username
+              text: labels.username
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/username
           - type: input
             label:
-              text: Password
+              text: labels.password
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/password
           - type: input
             label:
-              text: From
+              text: labels.from
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/from
           - type: input
             label:
-              text: Host
+              text: labels.host
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/host
           - type: switch
             label:
-              text: Send As Plain Text
+              text: labels.sendAsPlainText
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/sendAsPlainText
           - type: switch
             label:
-              text: TLS Enable
+              text: labels.tlsEnable
             schema:
               $ref: schema#/properties/settings/properties/smtp/properties/tlsEnabled
     schema:
       $ref: schema#/properties/settings
   - type: single-step-form
     label:
-      text: Infra
+      text: labels.infra
     show_label: true
     elements:
       - type: single-step-form
         label:
-          text: Cloud Services
+          text: labels.cloudServices
         show_label: true
         elements:
           - type: input
             label:
-              text: Provider
+              text: labels.provider
             schema:
               $ref: schema#/properties/infra/properties/cloudServices/properties/provider
           - type: single-step-form
             label:
-              text: Auth
+              text: labels.auth
             show_label: true
             elements:
               - type: input
                 label:
-                  text: Service Account JSON
+                  text: labels.serviceAccountJson
                 schema:
                   $ref: schema#/properties/infra/properties/cloudServices/properties/auth/properties/serviceAccountJson
             schema:
               $ref: schema#/properties/infra/properties/cloudServices/properties/auth
           - type: single-step-form
             label:
-              text: Kms
+              text: labels.kms
             show_label: true
             elements:
               - type: input
                 label:
-                  text: Master Key URL
+                  text: labels.masterKeyUrl
                 schema:
                   $ref: schema#/properties/infra/properties/cloudServices/properties/kms/properties/masterKeyURL
             schema:
               $ref: schema#/properties/infra/properties/cloudServices/properties/kms
           - type: single-step-form
             label:
-              text: Object Store
+              text: labels.objectStore
             show_label: true
             elements:
               - type: input
                 label:
-                  text: Bucket
+                  text: labels.bucket
                 schema:
                   $ref: schema#/properties/infra/properties/cloudServices/properties/objstore/properties/bucket
             schema:
@@ -192,27 +192,27 @@ elements:
           $ref: schema#/properties/infra/properties/cloudServices
       - type: single-step-form
         label:
-          text: DNS
+          text: labels.dns
         show_label: true
         elements:
           - type: input
             label:
-              text: Provider
+              text: labels.provider
             schema:
               $ref: schema#/properties/infra/properties/dns/properties/providers
           - type: single-step-form
             label:
-              text: Auth
+              text: labels.auth
             show_label: true
             elements:
               - type: input
                 label:
-                  text: Email
+                  text: labels.email
                 schema:
                   $ref: schema#/properties/infra/properties/dns/properties/auth/properties/email
               - type: input
                 label:
-                  text: Token
+                  text: labels.token
                 schema:
                   $ref: schema#/properties/infra/properties/dns/properties/auth/properties/token
             schema:
@@ -221,24 +221,24 @@ elements:
           $ref: schema#/properties/infra/properties/dns
       - type: single-step-form
         label:
-          text: Storage Class
+          text: labels.storageClass
         show_label: true
         elements:
           - type: input
             label:
-              text: Name
+              text: labels.name
             schema:
               $ref: schema#/properties/infra/properties/storageClass/properties/name
         schema:
           $ref: schema#/properties/infra/properties/storageClass
       - type: single-step-form
         label:
-          text: TLS
+          text: labels.tls
         show_label: true
         elements:
           - type: input
             label:
-              text: Email
+              text: labels.email
             schema:
               $ref: schema#/properties/infra/properties/tls/properties/email
         schema:
@@ -247,34 +247,34 @@ elements:
       $ref: schema#/properties/infra
   - type: single-step-form
     label:
-      text: Ingress
+      text: labels.ingress
     show_label: true
     elements:
       - type: select
         label:
-          text: Expose Via
+          text: labels.exposeVia
         options:
           - value: LoadBalancer
-            text: LoadBalancer
+            text: Load Balancer
           - value: HostPort
-            text: HostPort
+            text: Host Port
         schema:
           $ref: schema#/properties/ingress/properties/exposeVia
       - type: key-value-input-form
         label:
-          text: Node Selector
+          text: labels.nodeSelector
         isArray: true
         keys:
           label:
-            text: Key
+            text: labels.key
         values:
           label:
-            text: Value
+            text: labels.value
         schema:
           $ref: schema#/properties/ingress/properties/nodeSelector
       - type: reusable-element
         label:
-          text: Resources
+          text: labels.resources
         show_label: true
         moduleResolver: loadLocalComponent
         chart:
@@ -285,39 +285,39 @@ elements:
       $ref: schema#/properties/ingress
   - type: single-step-form
     label:
-      text: Nats
+      text: labels.nats
     show_label: true
     elements:
       - type: select
         label:
-          text: Expose Via
+          text: labels.exposeVia
         options:
           - value: LoadBalancer
-            text: LoadBalancer
+            text: Load Balancer
           - value: HostPort
-            text: HostPort
+            text: Host Port
         schema:
           $ref: schema#/properties/nats/properties/exposeVia
       - type: key-value-input-form
         label:
-          text: Node Selector
+          text: labels.nodeSelector
         isArray: true
         keys:
           label:
-            text: Key
+            text: labels.key
         values:
           label:
-            text: Value
+            text: labels.value
         schema:
           $ref: schema#/properties/nats/properties/nodeSelector
       - type: input
         label:
-          text: replicas
+          text: labels.repicas
         schema:
           $ref: schema#/properties/nats/properties/replicas
       - type: reusable-element
         label:
-          text: Resources
+          text: labels.resources
         show_label: true
         moduleResolver: loadLocalComponent
         chart:
