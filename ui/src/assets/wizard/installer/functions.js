@@ -1,12 +1,3 @@
-async function loadLocalFile(url) {
-  try {
-    const finalUrl = `../${url}`;
-    const localFile = await import(finalUrl);
-    return localFile.default;
-  } catch (e) {
-    return e;
-  }
-}
 async function loadFunctionJs(name) {
   try {
     const globFunctionJs = await import.meta.globEager("../*/ui/functions.js");
@@ -25,8 +16,10 @@ export async function loadLocalComponent({ itemCtx }) {
   let functions = {};
 
   try {
-    ui = await loadLocalFile(`${name}/ui/create-ui.yaml`);
-    language = await loadLocalFile(`${name}/ui/language.yaml`);
+    const uiFile = await import(`../${name}/ui/create-ui.yaml`);
+    ui = uiFile.default || {};
+    const languageFile = await import(`../${name}/ui/language.yaml`);
+    language = languageFile.default || {};
     functions = await loadFunctionJs(name);
   } catch (e) {
     console.log(e);

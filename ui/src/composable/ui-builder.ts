@@ -5,12 +5,17 @@ export const uiBuilderJsonSetter = async () => {
   //init vuex
   const store = useStore();
 
-  //declear variable
-  let ui = {};
-  let schema = {};
-  let model = {};
+  //declare interface
+  interface uiType {
+    default: Record<string, unknown>;
+  }
+
+  //declare variable
+  let ui: uiType = { default: {} };
+  let schema: uiType = { default: {} };
+  let model: uiType = { default: {} };
   let functions = {};
-  let language = {};
+  let language: uiType = { default: {} };
 
   //clear ui-builder store
   store.commit("wizard/ui$set", {});
@@ -21,11 +26,11 @@ export const uiBuilderJsonSetter = async () => {
 
   try {
     //read yaml from file
-    ui = await import("../assets/wizard/installer/create-ui.yaml");
-    model = await import("../assets/wizard/installer/model.yaml");
-    schema = await import("../assets/wizard/installer/schema.yaml");
-    language = await import("../assets/wizard/installer/language.yaml");
-    functions = await import("../assets/wizard/installer/functions.js");
+    ui = await import("../assets/wizard/installer/create-ui" + ".yaml");
+    model = await import("../assets/wizard/installer/model" + ".yaml");
+    schema = await import("../assets/wizard/installer/schema" + ".yaml");
+    language = await import("../assets/wizard/installer/language" + ".yaml");
+    functions = await import("../assets/wizard/installer/functions" + ".js");
   } catch (error) {
     console.log(error);
   }

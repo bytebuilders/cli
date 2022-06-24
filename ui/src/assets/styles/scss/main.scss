@@ -35,24 +35,17 @@
 @import "@appscode/design-system/components/buttons";
 @import "@appscode/design-system/components/ac-input";
 @import "@appscode/design-system/components/ac-card";
-@import "@appscode/design-system/components/dashboard-header";
 @import "@appscode/design-system/components/wizard";
 @import "@appscode/design-system/components/ac-multi-select";
 @import "@appscode/design-system/components/widget-menu";
 @import "@appscode/design-system/components/bbum/information-center";
 @import "@appscode/design-system/components/preview-modal";
-@import "@appscode/design-system/components/ac-table";
 @import "@appscode/design-system/components/ui-builder/ui-builder";
-@import "@appscode/design-system/components/pagination";
 @import "@appscode/design-system/components/preloader";
 @import "@appscode/design-system/components/bbum/sign-up-notification";
 @import "@appscode/design-system/components/ac-code-highlight";
 @import "@appscode/design-system/components/monaco-editor";
 @import "@appscode/design-system/components/transitions";
-@import "@appscode/design-system/components/ac-alert-box";
 
 // for monaco editor css import
 @import "monaco-editor/min/vs/editor/editor.main.css";
-
-@import "./transitions.scss";
-@import "./custom.scss";
