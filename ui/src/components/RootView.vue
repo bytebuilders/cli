@@ -26,7 +26,6 @@ onMounted(() => {
 });
 
 const doAction = () => {
-  console.log("Called");
   const myTarget = JSON.parse(JSON.stringify(uiBuilderValue.value));
   console.log(myTarget);
 };
