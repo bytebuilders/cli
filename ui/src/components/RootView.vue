@@ -36,7 +36,7 @@ const doAction = async () => {
 };
 
 const onCancel = () => {
-  console.log("Click on clancel");
+  window.location.href = "/";
 };
 </script>
 <style lang="scss">

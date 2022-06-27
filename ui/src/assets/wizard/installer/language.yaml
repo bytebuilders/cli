@@ -45,3 +45,6 @@ en:
   options:
     hostPort: Host Port
     loadBalancer: Load Balancer
+  buttons:
+    cancel: Reset
+    done: Done
