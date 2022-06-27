@@ -25,9 +25,14 @@ onMounted(() => {
   uiBuilderJsonSetter();
 });
 
-const doAction = () => {
-  const myTarget = JSON.parse(JSON.stringify(uiBuilderValue.value));
-  console.log(myTarget);
+const doAction = async () => {
+  try {
+    const reqBody = JSON.parse(JSON.stringify(uiBuilderValue.value));
+    const resp = await $axios.post("/", reqBody);
+    console.log(resp);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const onCancel = () => {
