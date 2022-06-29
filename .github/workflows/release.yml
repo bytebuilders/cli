@@ -42,6 +42,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Prepare git
+        env:
+          GITHUB_USER: 1gtm
+          GITHUB_TOKEN: ${{ secrets.LGTM_GITHUB_TOKEN }}
+        run: |
+          set -x
+          git config --global user.name "${GITHUB_USER}"
+          git config --global user.email "${GITHUB_USER}@appscode.com"
+          git config --global \
+            url."https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com".insteadOf \
+            "https://github.com"
+
       - name: Build
         env:
           APPSCODE_ENV: prod
