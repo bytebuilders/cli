@@ -17,28 +17,20 @@ limitations under the License.
 package pkg
 
 import (
+	"fmt"
+	"log"
 	"net/http"
+	"os/exec"
+	"runtime"
+	"time"
 
-	"go.bytebuilders.dev/cli"
+	"go.bytebuilders.dev/cli/ui"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/spf13/cobra"
-	"github.com/unrolled/render"
-	"go.wandrs.dev/binding"
-	httpw "go.wandrs.dev/http"
 	"k8s.io/klog/v2"
 )
-
-type FormData struct {
-	Name    string `form:"name" binding:"Required" json:"name"`
-	Email   string `form:"email" binding:"Required;Email" json:"email"`
-	CC      string `form:"cc" json:"cc"`
-	Product string `form:"product" binding:"Required" json:"product"` // This is now called plan in a parsed LicenseInfo
-	Cluster string `form:"cluster" binding:"Required" json:"cluster"`
-	Tos     string `form:"tos" binding:"Required" json:"tos"`
-	Token   string `form:"token" json:"token"`
-}
 
 func NewCmdInstaller() *cobra.Command {
 	cmd := &cobra.Command{
@@ -58,36 +50,35 @@ func runInstaller() error {
 	m := chi.NewRouter()
 	m.Use(middleware.RequestID)
 	m.Use(middleware.RealIP)
-	m.Use(middleware.Logger) // middlewares.NewLogger()
+	m.Use(middleware.Logger)
 	m.Use(middleware.Recoverer)
-	m.Use(binding.Injector(render.New(render.Options{
-		Directory: "templates",
-		FileSystem: &render.EmbedFileSystem{
-			FS: cli.FS(),
-		},
-		Extensions: []string{".html", ".tmpl"},
-	})))
 
-	// PUBLIC
-	m.Route("/html", func(m chi.Router) {
-		m.Get("/", binding.HandlerFunc(DisplayFormData))
-		m.With(binding.Bind(FormData{})).Post("/", binding.HandlerFunc(CaptureFormData))
-	})
+	m.Get("/*", http.FileServer(http.FS(ui.FS())).ServeHTTP)
 
-	m.Get("/", binding.HandlerFunc(func() string {
-		return "Hello world!"
-	}))
 	klog.Infoln()
-	klog.Infoln("Listening on http://localhost:4000/html")
+	url := "http://localhost:4000"
+	klog.Infof("Listening on %s", url)
+
+	go func() {
+		time.Sleep(100 * time.Millisecond)
+		if err := open(url); err != nil {
+			log.Println(err)
+		}
+	}()
 	return http.ListenAndServe(":4000", m)
 }
 
-func DisplayFormData(ctx httpw.ResponseWriter) {
-	ctx.HTML(http.StatusOK, "installer", map[string]string{
-		"Product": "console-enterprise",
-	})
-}
-
-func CaptureFormData(ctx httpw.ResponseWriter, params FormData) {
-	ctx.JSON(http.StatusOK, params)
+// https://gist.github.com/hyg/9c4afcd91fe24316cbf0
+// https://stackoverflow.com/a/39324149
+func open(url string) error {
+	switch runtime.GOOS {
+	case "linux":
+		return exec.Command("xdg-open", url).Start()
+	case "windows":
+		return exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+	case "darwin":
+		return exec.Command("open", url).Start()
+	default:
+		return fmt.Errorf("unsupported platform")
+	}
 }

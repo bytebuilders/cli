@@ -43,8 +43,8 @@ endif
 ### These variables should not need tweaking.
 ###
 
-SRC_PKGS := cmd pkg
-SRC_DIRS := $(SRC_PKGS) *.go hack/gendocs # directories which hold app source (not vendored)
+SRC_PKGS := cmd pkg ui
+SRC_DIRS := $(SRC_PKGS) hack/gendocs # directories which hold app source (not vendored)
 
 DOCKER_PLATFORMS := linux/amd64 linux/arm linux/arm64
 BIN_PLATFORMS    := $(DOCKER_PLATFORMS) windows/amd64 darwin/amd64 darwin/arm64
@@ -55,8 +55,6 @@ ARCH := $(if $(GOARCH),$(GOARCH),$(shell go env GOARCH))
 
 GO_VERSION       ?= 1.18
 BUILD_IMAGE      ?= appscode/golang-dev:$(GO_VERSION)
-
-RESTIC_VER  := 0.13.1
 
 OUTBIN = bin/$(BIN)-$(OS)-$(ARCH)
 ifeq ($(OS),windows)
@@ -70,8 +68,7 @@ BUILD_DIRS  := bin/$(OS)_$(ARCH)     \
                .go/cache             \
                hack/config           \
                $(HOME)/.credentials  \
-               $(HOME)/.kube         \
-               $(HOME)/.minikube
+               $(HOME)/.kube
 
 DOCKER_REPO_ROOT := /go/src/$(GO_PKG)/$(REPO)
 
@@ -137,6 +134,7 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 .PHONY: .go/$(OUTBIN).stamp
 .go/$(OUTBIN).stamp: $(BUILD_DIRS)
 	@echo "making $(OUTBIN)"
+	@cd ui && rm -rf dist && npm i && npm run build
 	@docker run                                                 \
 	    -i                                                      \
 	    --rm                                                    \
@@ -158,7 +156,6 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 	        git_tag=$(git_tag)                                  \
 	        commit_hash=$(commit_hash)                          \
 	        commit_timestamp=$(commit_timestamp)                \
-	        RESTIC_VER=$(RESTIC_VER)                            \
 	        ./hack/build.sh                                     \
 	    "
 	@if ! cmp -s .go/bin/$(OS)_$(ARCH)/$(BIN) $(OUTBIN); then   \
@@ -301,19 +298,3 @@ release:
 .PHONY: clean
 clean:
 	rm -rf .go bin
-
-.PHONY: gen-krew-manifest
-gen-krew-manifest:
-	@if [ "$(version_strategy)" != "tag" ]; then \
-		echo "apply tag to generate krew manifest."; \
-		exit 1; \
-	fi
-	@sed \
-      -e 's|{VERSION}|$(VERSION)|g' \
-      -e 's|{SHA256SUM_DARWIN_AMD64}|$(shell sha256sum bin/$(BIN)-darwin-amd64.tar.gz | cut -d' ' -f1)|g' \
-      -e 's|{SHA256SUM_DARWIN_ARM64}|$(shell sha256sum bin/$(BIN)-darwin-arm64.tar.gz | cut -d' ' -f1)|g' \
-      -e 's|{SHA256SUM_LINUX_AMD64}|$(shell sha256sum bin/$(BIN)-linux-amd64.tar.gz | cut -d' ' -f1)|g' \
-      -e 's|{SHA256SUM_LINUX_ARM}|$(shell sha256sum bin/$(BIN)-linux-arm.tar.gz | cut -d' ' -f1)|g' \
-      -e 's|{SHA256SUM_LINUX_ARM64}|$(shell sha256sum bin/$(BIN)-linux-arm64.tar.gz | cut -d' ' -f1)|g' \
-      -e 's|{SHA256SUM_WINDOWS_AMD64}|$(shell sha256sum bin/$(BIN)-windows-amd64.zip | cut -d' ' -f1)|g' \
-      hack/krew/plugin.yaml

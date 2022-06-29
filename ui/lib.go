@@ -14,15 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package cli
+package ui
 
 import (
 	"embed"
+	iofs "io/fs"
 )
 
-//go:embed templates/*.html
+//go:embed dist/*.html dist/*/*.css dist/*/*.eot dist/*/*.js dist/*/*.svg dist/*/*.ttf dist/*/*.woff dist/*/*.woff2
 var fs embed.FS
 
-func FS() embed.FS {
-	return fs
+func FS() iofs.FS {
+	fsys, err := iofs.Sub(fs, "dist")
+	if err != nil {
+		panic(err)
+	}
+	return fsys
 }
