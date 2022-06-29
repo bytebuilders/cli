@@ -86,7 +86,7 @@ build-%:
 	    GOOS=$(firstword $(subst _, ,$*)) \
 	    GOARCH=$(lastword $(subst _, ,$*))
 
-all-build: $(addprefix build-, $(subst /,_, $(BIN_PLATFORMS)))
+all-build: build-ui $(addprefix build-, $(subst /,_, $(BIN_PLATFORMS)))
 ifeq ($(COMPRESS),yes)
 	@cd bin; \
 	sha256sum $(patsubst $(BIN)-windows-%.tar.gz,$(BIN)-windows-%.zip, $(addsuffix .tar.gz, $(addprefix $(BIN)-, $(subst /,-, $(BIN_PLATFORMS))))) > $(BIN)-checksums.txt
@@ -123,6 +123,10 @@ fmt: $(BUILD_DIRS)
 
 build: $(OUTBIN)
 
+.PHONY: build-ui
+build-ui:
+	@cd ui && rm -rf dist && npm i && npm run build
+
 # The following structure defeats Go's (intentional) behavior to always touch
 # result files, even if they have not changed.  This will still run `go` but
 # will not trigger further work if nothing has actually changed.
@@ -134,7 +138,6 @@ $(OUTBIN): .go/$(OUTBIN).stamp
 .PHONY: .go/$(OUTBIN).stamp
 .go/$(OUTBIN).stamp: $(BUILD_DIRS)
 	@echo "making $(OUTBIN)"
-	@cd ui && rm -rf dist && npm i && npm run build
 	@docker run                                                 \
 	    -i                                                      \
 	    --rm                                                    \
@@ -269,7 +272,7 @@ check-license:
 		ltag -t "./hack/license" --excludes "vendor contrib" --check -v
 
 .PHONY: ci
-ci: verify check-license lint build unit-tests #cover
+ci: verify check-license build-ui lint build unit-tests #cover
 
 .PHONY: qa
 qa:
