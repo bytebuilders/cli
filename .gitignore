@@ -60,3 +60,5 @@ ui/.vscode/*
 *.njsproj
 *.sln
 *.sw?
+
+ace-installer
