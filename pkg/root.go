@@ -17,6 +17,8 @@ limitations under the License.
 package pkg
 
 import (
+	"go.bytebuilders.dev/cli/pkg/installer"
+
 	"github.com/spf13/cobra"
 	v "gomodules.xyz/x/version"
 )
@@ -32,6 +34,6 @@ func NewRootCmd() *cobra.Command {
 	rootCmd.AddCommand(v.NewCmdVersion())
 	rootCmd.AddCommand(NewCmdCompletion())
 
-	rootCmd.AddCommand(NewCmdInstaller())
+	rootCmd.AddCommand(installer.NewCmdInstaller())
 	return rootCmd
 }
