@@ -39,6 +39,10 @@ import (
 	"sigs.k8s.io/yaml"
 )
 
+const (
+	DNSProviderCloudFlare = "cloudflare"
+)
+
 // Steps to do manually
 // buckets to create
 // DNS record configure
@@ -452,7 +456,7 @@ func NewSampleOptions() *api.AceOptionsSpec {
 				Email: "ops@appscode.cloud",
 			},
 			DNS: api.InfraDns{
-				Provider: "cloudflare",
+				Provider: DNSProviderCloudFlare,
 				Auth: api.DNSProviderAuth{
 					Email: "---",
 					Token: "XYZ",
@@ -756,8 +760,8 @@ func GenerateIngress(in *api.AceOptionsSpec, out *api.AceSpec) error {
 	}
 
 	// TODO: Add additional DNS providers
-	if in.Infra.DNS.Provider == "cloudflare" {
-		out.IngressDns.Provider = "cloudflare"
+	if in.Infra.DNS.Provider == DNSProviderCloudFlare {
+		out.IngressDns.Provider = DNSProviderCloudFlare
 		out.IngressDns.Env = []core.EnvVar{
 			{
 				Name:  "CF_API_TOKEN",
@@ -977,8 +981,8 @@ func GenerateNats(in *api.AceOptionsSpec, out *api.AceSpec) error {
 		}
 
 		// TODO: Add additional DNS providers
-		if in.Infra.DNS.Provider == "cloudflare" {
-			out.NatsDns.Provider = "cloudflare"
+		if in.Infra.DNS.Provider == DNSProviderCloudFlare {
+			out.NatsDns.Provider = DNSProviderCloudFlare
 			out.NatsDns.Env = []core.EnvVar{
 				{
 					Name:  "CF_API_TOKEN",
@@ -1147,17 +1151,17 @@ func GeneratePlatformValues(in *api.AceOptionsSpec, base, out *api.AceSpec) erro
 			AppMode: "production",
 		},
 	}
-	if in.Settings.Platform.Hosted {
-		// out.AceOptionsSettings.Stripe = api.StripeSettings{}
-		// out.AceOptionsSettings.Searchlight: api.SearchlightSettings{},
-	}
+	// if in.Settings.Platform.Hosted {
+	// 	// out.AceOptionsSettings.Stripe = api.StripeSettings{}
+	// 	// out.AceOptionsSettings.Searchlight: api.SearchlightSettings{},
+	// }
 
 	return nil
 }
 
-func tplPlatformTLSSecret(in *api.AceOptionsSpec) string {
-	return fmt.Sprintf("%s-cert", in.Release.Name)
-}
+// func tplPlatformTLSSecret(in *api.AceOptionsSpec) string {
+// 	return fmt.Sprintf("%s-cert", in.Release.Name)
+// }
 
 func tplNATSCredSecret(in *api.AceOptionsSpec) string {
 	return fmt.Sprintf("%s-nats-cred", in.Release.Name)

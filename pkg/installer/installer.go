@@ -72,28 +72,11 @@ func runInstaller() error {
 				return
 			}
 			w.Header().Set("Content-Type", "application/json")
-			w.Write(data)
+			_, _ = w.Write(data)
 		})
 		m.Get("/options.json", func(w http.ResponseWriter, r *http.Request) {
 			in := NewSampleOptions()
-			//if data, err := yaml.Marshal(*in); err != nil {
-			//	panic(err)
-			//} else {
-			//	_ = ioutil.WriteFile(filepath.Join(confDir(), "options.yaml"), data, 0o644)
-			//}
-			rn.JSON(w, http.StatusOK, in)
-			//data, err := schema.FS().ReadFile("ace-options/values.openapiv3_schema.yaml")
-			//if err != nil {
-			//	http.Error(w, err.Error(), http.StatusInternalServerError)
-			//	return
-			//}
-			//data, err = yaml.YAMLToJSON(data)
-			//if err != nil {
-			//	http.Error(w, err.Error(), http.StatusInternalServerError)
-			//	return
-			//}
-			//w.Header().Set("Content-Type", "application/json")
-			//w.Write(data)
+			_ = rn.JSON(w, http.StatusOK, in)
 		})
 		m.Post("/install", func(w http.ResponseWriter, r *http.Request) {
 			var in api.AceOptionsSpec
@@ -108,7 +91,7 @@ func runInstaller() error {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			rn.Text(w, http.StatusOK, md)
+			_ = rn.Text(w, http.StatusOK, md)
 		})
 	})
 
