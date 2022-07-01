@@ -12,6 +12,12 @@ export const store: Store<State> = createStore<State>({
     markDown: "",
   },
 
+  getters: {
+    getMarkDown(state) {
+      return state.markDown || "";
+    },
+  },
+
   mutations: {
     setMarkDown(state, value) {
       state.markDown = value || {};

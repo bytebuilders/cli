@@ -14,9 +14,13 @@ import $axios from "../plugins/axios";
 import { onMounted, provide, computed } from "vue";
 import { uiBuilderJsonSetter } from "../composable/ui-builder";
 import { useStore } from "./../store";
+import { useRouter } from "vue-router";
+
+//Init router & store
+const router = useRouter();
+const store = useStore();
 
 // Get ui-builder Value using computed property
-const store = useStore();
 const uiBuilderValue = computed(() => store.getters["wizard/model"]);
 
 provide("$axios", $axios);
@@ -31,6 +35,7 @@ const doAction = async () => {
     const resp = await $axios.post("/apis/install", reqBody);
     const data = resp.data || "";
     store.commit("setMarkDown", data);
+    router.push("/info");
     console.log(data);
   } catch (error) {
     console.log(error);

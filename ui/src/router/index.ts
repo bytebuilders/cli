@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router";
+import MarkDownRender from "../components/MarkdownRender.vue";
 import RootView from "../components/RootView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +9,11 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: RootView,
+    },
+    {
+      path: "/info",
+      name: "info",
+      component: MarkDownRender,
     },
   ],
 });
