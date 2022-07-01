@@ -27,9 +27,9 @@ export const uiBuilderJsonSetter = async () => {
 
   try {
     //get schema & model from api call
-    const schemaReq = await $axios.get("/apis/options.json");
+    const schemaReq = await $axios.get("/apis/schema.json");
     schema = schemaReq.data || {};
-    const modelReq = await $axios.get("/apis/schema.json");
+    const modelReq = await $axios.get("/apis/options.json");
     model = modelReq.data || {};
 
     //read yaml from file
@@ -42,7 +42,7 @@ export const uiBuilderJsonSetter = async () => {
 
   //set value to vuex
   store.commit("wizard/schema$set", schema);
-  store.commit("wizard/model$init", cloneDeep(model));
+  store.commit("wizard/model$init", model);
 
   store.commit("wizard/ui$set", cloneDeep(ui.default));
   store.commit("wizard/language$set", language.default);
