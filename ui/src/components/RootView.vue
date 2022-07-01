@@ -28,8 +28,10 @@ onMounted(() => {
 const doAction = async () => {
   try {
     const reqBody = JSON.parse(JSON.stringify(uiBuilderValue.value));
-    const resp = await $axios.post("/", reqBody);
-    console.log(resp);
+    const resp = await $axios.post("/apis/install", reqBody);
+    const data = resp.data || "";
+    store.commit("setMarkDown", data);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }

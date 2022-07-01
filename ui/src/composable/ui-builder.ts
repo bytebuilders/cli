@@ -1,3 +1,4 @@
+import $axios from "@/plugins/axios";
 import { cloneDeep } from "lodash";
 import { useStore } from "../store";
 
@@ -25,10 +26,14 @@ export const uiBuilderJsonSetter = async () => {
   store.commit("wizard/functions$set", {});
 
   try {
+    //get schema & model from api call
+    const schemaReq = await $axios.get("/apis/options.json");
+    schema = schemaReq.data || {};
+    const modelReq = await $axios.get("/apis/schema.json");
+    model = modelReq.data || {};
+
     //read yaml from file
     ui = await import("../assets/wizard/installer/create-ui" + ".yaml");
-    model = await import("../assets/wizard/installer/model" + ".yaml");
-    schema = await import("../assets/wizard/installer/schema" + ".yaml");
     language = await import("../assets/wizard/installer/language" + ".yaml");
     functions = await import("../assets/wizard/installer/functions" + ".js");
   } catch (error) {
@@ -36,9 +41,10 @@ export const uiBuilderJsonSetter = async () => {
   }
 
   //set value to vuex
+  store.commit("wizard/schema$set", schema);
+  store.commit("wizard/model$init", cloneDeep(model));
+
   store.commit("wizard/ui$set", cloneDeep(ui.default));
-  store.commit("wizard/schema$set", schema.default);
-  store.commit("wizard/model$init", cloneDeep(model.default));
   store.commit("wizard/language$set", language.default);
   store.commit("wizard/functions$set", functions);
 };

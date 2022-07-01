@@ -1,14 +1,22 @@
 import type { InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store } from "vuex";
 
-export interface State {}
+export interface State {
+  markDown: string;
+}
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store: Store<State> = createStore<State>({
-  state: {},
+  state: {
+    markDown: "",
+  },
 
-  mutations: {},
+  mutations: {
+    setMarkDown(state, value) {
+      state.markDown = value || {};
+    },
+  },
 
   actions: {},
 
