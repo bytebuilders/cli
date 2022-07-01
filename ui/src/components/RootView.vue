@@ -55,6 +55,7 @@ const onCancel = () => {
 </script>
 <style lang="scss">
 .bb-installer {
+  margin-bottom: 30px;
   .ac-system-body {
     grid-template-columns: auto;
     .ui-builders-wrapper {
