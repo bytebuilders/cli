@@ -4,22 +4,6 @@
     <div class="container-720">
       <div class="ac-markdown">
         <div v-html="mdToHtml"></div>
-        <div
-          class="is-flex is-justify-content-space-between is-align-items-center"
-        >
-          <button
-            class="button ac-button is-small is-secondary"
-            @click="onBackClick"
-          >
-            <i class="fa fa-arrow-left mr-15"></i> Back
-          </button>
-          <button
-            class="button ac-button is-small is-primary"
-            @click="onDownloadClick"
-          >
-            Downloads <i class="fa fa-download ml-15"></i>
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -29,23 +13,13 @@
 import RootNavbar from "./RootNavbar.vue";
 import { computed } from "vue";
 import { useStore } from "./../store";
-import { useRouter } from "vue-router";
 import { marked } from "marked";
 
-//init store & router
+//init store
 const store = useStore();
-const router = useRouter();
 
 // Get markdown from the store
 const markDown = computed(() => store.getters["getMarkDown"]);
-
-const onBackClick = () => {
-  router.push("./");
-};
-
-const onDownloadClick = () => {
-  window.print();
-};
 
 const mdToHtml = marked.parse(markDown.value);
 </script>
