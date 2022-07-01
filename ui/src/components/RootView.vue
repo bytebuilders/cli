@@ -43,7 +43,7 @@ const doAction = async () => {
 };
 
 const onCancel = () => {
-  window.location.href = "/";
+  router.push("/");
 };
 </script>
 <style lang="scss">

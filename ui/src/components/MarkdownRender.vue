@@ -2,6 +2,7 @@
   <div class="bb-installer">
     <root-navbar />
     <div v-html="mdToHtml"></div>
+    <button @click="onBackClick">Back</button>
   </div>
 </template>
 
@@ -9,11 +10,19 @@
 import RootNavbar from "./RootNavbar.vue";
 import { computed } from "vue";
 import { useStore } from "./../store";
+import { useRouter } from "vue-router";
 import { marked } from "marked";
 
-// Get markdown from the store
+//init store & router
 const store = useStore();
+const router = useRouter();
+
+// Get markdown from the store
 const markDown = computed(() => store.getters["getMarkDown"]);
+
+const onBackClick = () => {
+  router.push("./");
+};
 
 const mdToHtml = marked.parse(markDown.value);
 </script>
