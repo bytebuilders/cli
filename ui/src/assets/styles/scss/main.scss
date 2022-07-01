@@ -1,30 +1,27 @@
 @import "bulma/bulma.sass";
 
-// @import "bulma/sass/utilities/initial-variables";
-// @import "bulma/sass/utilities/functions";
-// @import "bulma/sass/utilities/derived-variables";
-
 @import "bulma/sass/utilities/mixins";
-// @import "bulma-checkradio";
 @import "bulma-switch";
 @import "font-awesome/css/font-awesome.min.css";
-// @import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 @import "vue-multiselect/dist/vue-multiselect.css";
 
 // // BASE
 @import "@appscode/design-system/base/utilities/initial-variables";
 @import "@appscode/design-system/base/utilities/derived-variables";
-// :root {
-//   --hsl-hue: 240;
-//   --hsl-saturation: 55%;
-//   --hsl-lightness: 55%;
-// }
+
 @import "@appscode/design-system/base/utilities/typography";
 @import "@appscode/design-system/base/utilities/default";
 @import "@appscode/design-system/base/utilities/mixin";
 
 // // COMPONENTS
 @import "@appscode/design-system/components/navbar";
+@import "@appscode/design-system/components/buttons";
+@import "@appscode/design-system/components/ac-input";
+@import "@appscode/design-system/components/ac-multi-select";
+@import "@appscode/design-system/components/ui-builder/ui-builder";
+
+// If needed then comment out
+// @import "bulma-checkradio";
 // @import "@appscode/design-system/components/app-drawer";
 // @import "@appscode/design-system/components/ac-content-layout";
 // @import "@appscode/design-system/components/ac-modal";
@@ -32,20 +29,17 @@
 // @import "@appscode/design-system/components/ac-options";
 // @import "@appscode/design-system/components/left-sidebar-menu";
 // @import "@appscode/design-system/components/ac-code-highlight";
-@import "@appscode/design-system/components/buttons";
-@import "@appscode/design-system/components/ac-input";
 // @import "@appscode/design-system/components/ac-card";
 // @import "@appscode/design-system/components/wizard";
-@import "@appscode/design-system/components/ac-multi-select";
 // @import "@appscode/design-system/components/widget-menu";
 // @import "@appscode/design-system/components/bbum/information-center";
 // @import "@appscode/design-system/components/preview-modal";
-@import "@appscode/design-system/components/ui-builder/ui-builder";
 // @import "@appscode/design-system/components/preloader";
 // @import "@appscode/design-system/components/bbum/sign-up-notification";
 // @import "@appscode/design-system/components/ac-code-highlight";
 // @import "@appscode/design-system/components/monaco-editor";
 // @import "@appscode/design-system/components/transitions";
+// @import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 
 // // for monaco editor css import
 // @import "monaco-editor/min/vs/editor/editor.main.css";

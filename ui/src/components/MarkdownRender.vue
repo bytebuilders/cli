@@ -15,7 +15,7 @@
           </button>
           <button
             class="button ac-button is-small is-primary"
-            @click="onBackClick"
+            @click="onDownloadClick"
           >
             Downloads <i class="fa fa-download ml-15"></i>
           </button>
@@ -43,8 +43,13 @@ const onBackClick = () => {
   router.push("./");
 };
 
+const onDownloadClick = () => {
+  window.print();
+};
+
 const mdToHtml = marked.parse(markDown.value);
 </script>
+
 <style lang="scss">
 .container-720 {
   width: 720px;
