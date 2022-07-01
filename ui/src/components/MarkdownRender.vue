@@ -1,7 +1,7 @@
 <template>
   <div class="bb-installer">
     <root-navbar />
-    {{ markDown }}
+    <div v-html="mdToHtml"></div>
   </div>
 </template>
 
@@ -9,10 +9,13 @@
 import RootNavbar from "./RootNavbar.vue";
 import { computed } from "vue";
 import { useStore } from "./../store";
+import { marked } from "marked";
 
 // Get markdown from the store
 const store = useStore();
 const markDown = computed(() => store.getters["getMarkDown"]);
+
+const mdToHtml = marked.parse(markDown.value);
 </script>
 <style lang="scss">
 .bb-installer {
