@@ -1,14 +1,36 @@
 import type { InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store } from "vuex";
 
-export interface State {}
+export interface State {
+  markDown: string;
+  isDataAvailable: boolean;
+}
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store: Store<State> = createStore<State>({
-  state: {},
+  state: {
+    markDown: "",
+    isDataAvailable: false,
+  },
 
-  mutations: {},
+  getters: {
+    getMarkDown(state) {
+      return state.markDown || "";
+    },
+    getIsDataAvailable(state) {
+      return state.isDataAvailable || false;
+    },
+  },
+
+  mutations: {
+    setMarkDown(state, value) {
+      state.markDown = value || {};
+    },
+    setIsDataAvailable(state, value: boolean) {
+      state.isDataAvailable = value;
+    },
+  },
 
   actions: {},
 
