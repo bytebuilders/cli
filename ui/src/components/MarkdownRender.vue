@@ -26,13 +26,8 @@ const onBackClick = () => {
 
 const mdToHtml = marked.parse(markDown.value);
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .bb-installer {
-  .ac-system-body {
-    grid-template-columns: auto;
-    .ui-builders-wrapper {
-      margin: auto;
-    }
-  }
+  margin-top: 50px;
 }
 </style>

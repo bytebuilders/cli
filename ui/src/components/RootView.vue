@@ -16,18 +16,25 @@ import { uiBuilderJsonSetter } from "../composable/ui-builder";
 import { useStore } from "./../store";
 import { useRouter } from "vue-router";
 
+//provide axios instance
+provide("$axios", $axios);
+
 //Init router & store
 const router = useRouter();
 const store = useStore();
 
+//Check If model value available
+const isModelValueAvailable: boolean = store.getters["getIsDataAvailable"];
+
+//Set ui-builder initial value
+onMounted(() => {
+  if (!isModelValueAvailable) {
+    uiBuilderJsonSetter();
+  }
+});
+
 // Get ui-builder Value using computed property
 const uiBuilderValue = computed(() => store.getters["wizard/model"]);
-
-provide("$axios", $axios);
-
-onMounted(() => {
-  uiBuilderJsonSetter();
-});
 
 const doAction = async () => {
   try {
@@ -35,15 +42,15 @@ const doAction = async () => {
     const resp = await $axios.post("/apis/install", reqBody);
     const data = resp.data || "";
     store.commit("setMarkDown", data);
+    store.commit("setIsDataAvailable", true);
     router.push("/info");
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
 };
 
 const onCancel = () => {
-  router.push("/");
+  window.location.href = "/";
 };
 </script>
 <style lang="scss">
