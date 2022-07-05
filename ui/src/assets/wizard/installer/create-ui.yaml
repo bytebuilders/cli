@@ -62,15 +62,11 @@ elements:
             schema:
               $ref: schema#/properties/settings/properties/cache/properties/persistence/properties/size
             type: input
-          - chart:
-              name: reusable-resources
-            label:
+          - label:
               text: labels.resources
-            moduleResolver: loadLocalComponent
             schema:
               $ref: schema#/properties/settings/properties/cache/properties/resources
-            show_label: true
-            type: reusable-element
+            type: resource-input-form
         label:
           text: labels.cache
         schema:
@@ -83,15 +79,11 @@ elements:
             schema:
               $ref: schema#/properties/settings/properties/db/properties/persistence/properties/size
             type: input
-          - chart:
-              name: reusable-resources
-            label:
+          - label:
               text: labels.resources
-            moduleResolver: loadLocalComponent
             schema:
               $ref: schema#/properties/settings/properties/db/properties/resources
-            show_label: true
-            type: reusable-element
+            type: resource-input-form
         label:
           text: labels.database
         schema:
@@ -270,15 +262,11 @@ elements:
         values:
           label:
             text: labels.value
-      - chart:
-          name: reusable-resources
-        label:
+      - label:
           text: labels.resources
-        moduleResolver: loadLocalComponent
         schema:
           $ref: schema#/properties/ingress/properties/resources
-        show_label: true
-        type: reusable-element
+        type: resource-input-form
     label:
       text: labels.ingress
     schema:
@@ -313,15 +301,11 @@ elements:
         schema:
           $ref: schema#/properties/nats/properties/replicas
         type: input
-      - chart:
-          name: reusable-resources
-        label:
+      - label:
           text: labels.resources
-        moduleResolver: loadLocalComponent
         schema:
           $ref: schema#/properties/nats/properties/resources
-        show_label: true
-        type: reusable-element
+        type: resource-input-form
     label:
       text: labels.nats
     schema:
