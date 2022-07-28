@@ -297,7 +297,7 @@ elements:
           label:
             text: labels.value
       - label:
-          text: labels.repicas
+          text: labels.replicas
         schema:
           $ref: schema#/properties/nats/properties/replicas
         type: input
